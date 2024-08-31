@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/components/my_button.dart';
 import 'package:food_app/components/my_textfield.dart';
+import 'package:food_app/pages/home_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+final void Function()? onTap;
 
+  const LoginPage({super.key, required this.onTap});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
+void login(){
 
-  LoginPage({super.key});
+
+
+  Navigator.push(context, MaterialPageRoute(
+    builder: (context) => const HomePage(),
+    ),);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +67,7 @@ final TextEditingController passwordController = TextEditingController();
 
               MyButton(
                 text: "Sign In",
-                onTap: () {},
+                onTap: login,
               ),
 
              const SizedBox(height: 25), 
@@ -66,7 +81,7 @@ final TextEditingController passwordController = TextEditingController();
                 ),),
                 const SizedBox(width: 4,),
                 GestureDetector(
-                  on 
+                  onTap: widget.onTap,
                   child: Text('Register now',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
